@@ -1,0 +1,5 @@
+D:\New folder\Job\xsis\mini-project\MarkomApplication\Markom.ViewModel\bin\Debug\Markom.ViewModel.dll
+D:\New folder\Job\xsis\mini-project\MarkomApplication\Markom.ViewModel\bin\Debug\Markom.ViewModel.pdb
+D:\New folder\Job\xsis\mini-project\MarkomApplication\Markom.ViewModel\obj\Debug\Markom.ViewModel.csprojAssemblyReference.cache
+D:\New folder\Job\xsis\mini-project\MarkomApplication\Markom.ViewModel\obj\Debug\Markom.ViewModel.dll
+D:\New folder\Job\xsis\mini-project\MarkomApplication\Markom.ViewModel\obj\Debug\Markom.ViewModel.pdb

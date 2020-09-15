@@ -1,0 +1,15 @@
+D:\New folder\Job\xsis\mini-project\MarkomApplication\Markom.DataAccess\bin\Debug\Markom.DataAccess.dll
+D:\New folder\Job\xsis\mini-project\MarkomApplication\Markom.DataAccess\bin\Debug\Markom.DataAccess.pdb
+D:\New folder\Job\xsis\mini-project\MarkomApplication\Markom.DataAccess\bin\Debug\EntityFramework.dll
+D:\New folder\Job\xsis\mini-project\MarkomApplication\Markom.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+D:\New folder\Job\xsis\mini-project\MarkomApplication\Markom.DataAccess\bin\Debug\Markom.DataModel.dll
+D:\New folder\Job\xsis\mini-project\MarkomApplication\Markom.DataAccess\bin\Debug\Markom.ViewModel.dll
+D:\New folder\Job\xsis\mini-project\MarkomApplication\Markom.DataAccess\bin\Debug\Markom.DataModel.pdb
+D:\New folder\Job\xsis\mini-project\MarkomApplication\Markom.DataAccess\bin\Debug\Markom.DataModel.dll.config
+D:\New folder\Job\xsis\mini-project\MarkomApplication\Markom.DataAccess\bin\Debug\Markom.ViewModel.pdb
+D:\New folder\Job\xsis\mini-project\MarkomApplication\Markom.DataAccess\bin\Debug\EntityFramework.xml
+D:\New folder\Job\xsis\mini-project\MarkomApplication\Markom.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+D:\New folder\Job\xsis\mini-project\MarkomApplication\Markom.DataAccess\obj\Debug\Markom.DataAccess.csprojAssemblyReference.cache
+D:\New folder\Job\xsis\mini-project\MarkomApplication\Markom.DataAccess\obj\Debug\Markom.DataAccess.csproj.CopyComplete
+D:\New folder\Job\xsis\mini-project\MarkomApplication\Markom.DataAccess\obj\Debug\Markom.DataAccess.dll
+D:\New folder\Job\xsis\mini-project\MarkomApplication\Markom.DataAccess\obj\Debug\Markom.DataAccess.pdb
