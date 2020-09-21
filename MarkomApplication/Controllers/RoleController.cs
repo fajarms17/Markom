@@ -22,9 +22,9 @@ namespace MarkomApplication.Controllers
         {
             List<RoleViewModel> list = new List<RoleViewModel>();
             list = RoleRepo.All();
-            if(code != "kosong"|| name != "" || createdDate != null || createdBy != "")
+            if(code != "-Select Role Code-"|| name != "-Select Role Name-" || createdDate != null || createdBy != "")
             {
-                list = list.Where(a => a.code == code || a.name == name || a.created_by == createdBy || a.created_date == createdDate).ToList();
+                list = list.Where(a => a.code == code || a.name == name || a.created_by.ToLower().Contains(createdBy.ToLower()) || a.created_date == createdDate).ToList();
             }
 
             return PartialView("_List", list);
@@ -40,6 +40,7 @@ namespace MarkomApplication.Controllers
         [HttpPost]
         public ActionResult Create(RoleViewModel model)
         {
+            
             if (RoleRepo.NameValidation(model))
             {
                 ResponseResult result = RoleRepo.Update(model);
@@ -54,6 +55,7 @@ namespace MarkomApplication.Controllers
             }
             else
             {
+                ModelState.AddModelError("name", "Code Name already exist");
                 return Json(new
                 {
                     success = false,
@@ -119,7 +121,13 @@ namespace MarkomApplication.Controllers
         }
 
 
+        public ActionResult Detail(int id)
+        {
+            RoleViewModel model = RoleRepo.ById(id);
+            
+            return PartialView("_Detail", model);
 
+        }
 
     }
 }

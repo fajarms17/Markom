@@ -1,4 +1,4 @@
-﻿@model Markom.ViewModel.RoleViewModel
+﻿@model Markom.ViewModel.UnitViewModel
 @{
     ViewBag.Title = "Index";
 }
@@ -6,39 +6,40 @@
     .modal-content {
         max-width: 450px;
     }
-    #code, #created_by, #created_date, #name, #description{
-        display:inline;
-        max-width:250px;
-    }
-    #fitur-add, #fitur-search{
-        padding-bottom:15px;
+
+    #code, #created_by, #created_date, #name, #description {
+        display: inline;
+        max-width: 250px;
     }
 
+    #fitur-add, #fitur-search {
+        padding-bottom: 15px;
+    }
 </style>
 
 <div class="panel panel-primary">
     <div class="panel-heading">
-        List Role
+        List Unit
     </div>
     <div class="panel-body">
         <div style="background-color:#f5f5f0">
-            Home / Master / List Role
+            Home / Master / List Unit
         </div>
         <div class="col-md-12" id="fitur-add">
             <input id="btn-create-new" type="button" class="btn btn-primary pull-right" value="Add" />
         </div>
         <div id="fitur-search">
-            @Html.DropDownListFor(model => model.code, (IEnumerable<SelectListItem>)ViewBag.Code, "-Select Role Code-", new { @class = "form-control" })
-            @Html.DropDownListFor(model => model.name, (IEnumerable<SelectListItem>)ViewBag.Name, "-Select Role Name-", new { @class = "form-control" })
+            @Html.DropDownListFor(model => model.code, (IEnumerable<SelectListItem>)ViewBag.Code, "-Select Unit Code-", new { @class = "form-control" })
+            @Html.DropDownListFor(model => model.name, (IEnumerable<SelectListItem>)ViewBag.Name, "-Select Unit Name-", new { @class = "form-control" })
             @Html.EditorFor(model => model.created_date, new { htmlAttributes = new { @class = "form-control", @type = "date", @placeholder = "Created Date" } })
             @Html.EditorFor(model => model.created_by, new { htmlAttributes = new { @class = "form-control", @placeholder = "Created By" } })
             <input id="btn-search" type="button" class="btn btn-warning pull-right" value="Search" />
         </div>
 
-        <div id="role-list">Loading...</div>
+        <div id="unit-list">Loading...</div>
     </div>
 
-    
+
 
 
 </div>
@@ -63,8 +64,7 @@
 
 @section Scripts{
     <script type="text/javascript">
-        var text = $('#code option:selected').text();
-        console.log(text);
+        
         $(document).ready(function () {
             GetList();
         });
@@ -72,23 +72,23 @@
         function GetList() {
             var code = $('#code option:selected').text();
             var name = $('#name option:selected').text();
-            
+
             $.ajax({
-                url: '@Url.Action("List","Role")',
+                url: '@Url.Action("List","Unit")',
                 type: 'get',
                 data: { code: code, name: name, createdDate: $("#created_date").val(), createdBy: $("#created_by").val() },
                 success: function (result) {
-                    $("#role-list").html(result);
+                    $("#unit-list").html(result);
                 }
             });
         }
 
         $("#btn-create-new").click(function () {
             $.ajax({
-                url: '@Url.Action("Create", "Role")',
+                url: '@Url.Action("Create", "Unit")',
                 type: 'get',
                 success: function (result) {
-                    $(".modal-title").html("Add Role");
+                    $(".modal-title").html("Add Unit");
                     $(".modal-body").html(result);
                     $(".modal").modal("show");
                 }
@@ -98,7 +98,7 @@
         $("#btn-search").click(function () {
             GetList();
         });
-        
+
 
 
 
@@ -106,4 +106,5 @@
 
 
 }
+
 

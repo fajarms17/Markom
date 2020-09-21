@@ -128,6 +128,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\UnitController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -174,6 +175,13 @@
     <Content Include="Views\Role\_List.cshtml" />
     <Content Include="Views\Role\_Delete.cshtml" />
     <Content Include="Views\Role\_Edit.cshtml" />
+    <Content Include="Views\Role\_Detail.cshtml" />
+    <Content Include="Views\Unit\Index.cshtml" />
+    <Content Include="Views\Unit\_Create.cshtml" />
+    <Content Include="Views\Unit\_List.cshtml" />
+    <Content Include="Views\Unit\_Edit.cshtml" />
+    <Content Include="Views\Unit\_Detail.cshtml" />
+    <Content Include="Views\Unit\_Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

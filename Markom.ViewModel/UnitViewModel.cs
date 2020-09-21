@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Markom.ViewModel
 {
-    public class RoleViewModel
+    public class UnitViewModel
     {
         public int id { get; set; }
 
@@ -15,13 +15,10 @@ namespace Markom.ViewModel
         [StringLength(50)]
         public string code { get; set; }
 
-        
+        [Required(ErrorMessage = "Unit Name Tidak Boleh Kosong")]
         [StringLength(50)]
-        
-        [Required(ErrorMessage = "Role Name Tidak Boleh Kosong")]
         public string name { get; set; }
 
-        [Required(ErrorMessage = "Deskripsi Tidak Boleh Kosong")]
         [StringLength(255)]
         public string description { get; set; }
 

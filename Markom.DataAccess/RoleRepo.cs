@@ -109,12 +109,12 @@ namespace Markom.DataAccess
             using (var db = new MarkomContext())
             {
                 m_role valid = db.m_role
-                    .Where(o => o.name == entity.name && o.id == entity.id)
+                    .Where(o => o.name == entity.name && o.id != entity.id && o.is_delete == false)
                     .FirstOrDefault();
                 if (valid != null)
                 {
                     isValid = false;
-                }
+                } 
             }
             return isValid;
         }

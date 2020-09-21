@@ -1,0 +1,67 @@
+﻿@model Markom.ViewModel.UnitViewModel
+
+@using (Html.BeginForm("Delete", "Unit", FormMethod.Post,
+    new { id = "form-delete", name = "form-delete" }))
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="form-horizontal">
+        <h2>Delete Data ? </h2>
+
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.code, new { @id = "codeBaru" })
+
+
+
+
+        <br /><br />
+        <div class="form-group">
+            <div class="col-md-offset-4">
+                <input type="submit" value="Delete" class="btn btn-primary" />
+                <button type="button" class="btn btn-warning btn-batal">Cancel</button>
+
+            </div>
+        </div>
+    </div>
+}
+
+
+<script type="text/javascript">
+    $("#form-delete").submit(function () {
+        $.ajax({
+            url: this.action,
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.success) {
+                    var code = $("#codeBaru").val();
+                    $(".modal").modal("hide");
+                    GetList();
+
+                    $("#notif").html("<b>Data Deleted</b>!!! Data Unit with code <b>" + code + "</b> has been deleted");
+
+                }
+                else {
+                    alert("Error" + result.message);
+                }
+            }
+        });
+        return false;
+    });
+    $(".btn-batal").on("click", function () {
+
+        $(".modal").modal("hide");
+
+
+    });
+</script>
+
+
+
+
+
+

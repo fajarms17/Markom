@@ -27,7 +27,7 @@
         <div class="form-group">
             <div class="col-md-offset-1">
                 * Role Name
-                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @disabled="disabled" } })
 
             </div>
             <div class="col-md-offset-3">
@@ -39,7 +39,7 @@
         <div class="form-group">
             <div class="col-md-offset-1">
                 * Description
-                @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" , @disabled="disabled"} })
             </div>
             <div class="col-md-offset-3">
                 @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
@@ -52,9 +52,9 @@
 
 
         <div class="form-group">
-            <div class="col-md-offset-7">
-                <input type="submit" value="Update" class="btn btn-primary" />
-                <button type="button" class="btn btn-warning btn-batal">Cancel</button>
+            <div class="col-md-offset-8">
+                
+                <button type="button" class="btn btn-warning btn-batal">Close</button>
 
             </div>
         </div>
@@ -65,37 +65,13 @@
 <script type="text/javascript">
 
 
-    $("#form-edit").submit(function () {
-
-        $.ajax({
-            url: this.action,
-            type: this.method,
-            data: $(this).serialize(),
-            success: function (result) {
-
-                if (result.success) {
-                    var notif = '@Session["EditCode"].ToString()';
-                    //alert("Save Successfull!");
-                    $(".modal").modal("hide");
-                    GetList();
-                    $("#notif").html("<b>Data Updated!!!</b> Data Role has been updated!");//mulai stack....
-
-                }
-
-                else {
-
-                    alert(result.message);
-                }
-            }
-        });
-        return false;
-    });
-
+    
     $(".btn-batal").on("click", function () {
         $(".modal").modal("hide");
 
     });
 </script>
+
 
 
 
