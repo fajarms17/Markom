@@ -1,52 +1,51 @@
-﻿@model Markom.ViewModel.RoleViewModel
+﻿@model Markom.ViewModel.ProductViewModel
 
 @Scripts.Render("~/bundles/jqueryval")
 
 
 
-@using (Html.BeginForm("Create", "Role", FormMethod.Post, new { id = "form-create", name = "form-create" }))
+@using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { id = "form-edit", name = "form-edit" }))
 {
     @Html.AntiForgeryToken()
     <style>
-        .form-control{
-            display:inline
+        .form-control {
+            display: inline
         }
     </style>
 
     <div class="form-horizontal">
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
         <div class="form-group">
             <div class="col-md-offset-1">
-                * Role Code
-                @Html.EditorFor(model => model.code, new { htmlAttributes = new { @class = "form-control", @placeholder = "Auto Generated", @disabled = "disabled" } })
-             </div>
+                * Product Code
+                @Html.EditorFor(model => model.code, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+            </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-1">
-                * Role Name
+                * Product Name
                 @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
-                
-                
+
             </div>
             <div class="col-md-offset-3">
-                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
-                
+                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger " })
             </div>
-            
+
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-1">
-                * Description
+                 Description
                 @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
             </div>
             <div class="col-md-offset-3">
                 @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
             </div>
-            
-        </div>                          
+
+        </div>
 
 
 
@@ -54,37 +53,38 @@
 
         <div class="form-group">
             <div class="col-md-offset-7">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Update" class="btn btn-primary" />
                 <button type="button" class="btn btn-warning btn-batal">Cancel</button>
-                
+
             </div>
         </div>
     </div>
 }
 
+
 <script type="text/javascript">
 
 
-    $("#form-create").submit(function () {
-        
+    $("#form-edit").submit(function () {
+
         $.ajax({
             url: this.action,
             type: this.method,
             data: $(this).serialize(),
-            success: function (result) {               
-                
+            success: function (result) {
+
                 if (result.success) {
-                    var notif = '@Session["code"].ToString()';
+                    var notif = '@Session["EditCode"].ToString()';
                     //alert("Save Successfull!");
                     $(".modal").modal("hide");
                     GetList();
-                    $("#notif").html("<b>Data Saved!!!</b> New Role has been add with code <b>" + notif+"</b>");//mulai stack....
-                                       
+                    $("#notif").html("<b>Data Updated!!!</b> Data product has been updated!");//mulai stack....
+
                 }
-                
+
                 else {
-                    
-                    //alert(result.message);
+
+                    alert(result.message);
                 }
             }
         });
@@ -93,8 +93,10 @@
 
     $(".btn-batal").on("click", function () {
         $(".modal").modal("hide");
-        
+
     });
 </script>
+
+
 
 

@@ -1,0 +1,133 @@
+﻿@model IEnumerable<Markom.ViewModel.ProductViewModel>
+
+<table class="table">
+    <tr>
+        <th>
+            No
+        </th>
+        <th>
+            Product Code
+        </th>
+        <th>
+            Product Name
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Created Date
+        </th>
+        <th>
+            Created By
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+    <tbody>
+        @{ int counter = 0;
+
+        }
+        @foreach (var item in Model)
+        {
+            counter++;
+            <tr>
+                <td>
+                    @counter
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @item.created_date.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.created_by)
+                </td>
+                <td>
+                    <div class="btn-group btn-group-sm">
+                        <button type="button" class="btn btn-edit" data-id="@item.id" title="Edit">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+
+                        </button>
+                        <button type="button" class="btn btn-delete" data-id="@item.id" title="Delete">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+
+                        </button>
+                        <button type="button" class="btn btn-detail" data-id="@item.id" title="Detail">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+
+                        </button>
+
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<script type="text/javascript">
+
+    var editName = $("#name").val();
+    $(".btn-delete").click(function () {
+        $.ajax({
+            url: '@Url.Action("Delete","Product")',
+            type: 'get',
+            data: { id: $(this).attr("data-id") },
+            success: function (result) {
+
+                $(".modal-title").html("Delete Data");
+                $(".modal-body").html(result);
+                $(".modal").modal("show");
+
+
+            }
+        });
+    });
+
+    $(".btn-edit").click(function () {
+        var currentRow = $(this).closest("tr");
+        var code = currentRow.find("td:eq(1)").text();
+        var name = currentRow.find("td:eq(2)").text();
+        $.ajax({
+            url: '@Url.Action("Edit","Product")',
+            type: 'get',
+            data: { id: $(this).attr("data-id") },
+            success: function (result) {
+
+
+                $(".modal-title").html("Edit Product - " + name + " (" + code + ")");
+                $(".modal-body").html(result);
+                $(".modal").modal("show");
+
+
+            }
+        });
+    });
+
+    $(".btn-detail").click(function () {
+        var currentRow = $(this).closest("tr");
+        var code = currentRow.find("td:eq(1)").text();
+        var name = currentRow.find("td:eq(2)").text();
+        $.ajax({
+            url: '@Url.Action("Detail","Product")',
+            type: 'get',
+            data: { id: $(this).attr("data-id") },
+            success: function (result) {
+                
+                $(".modal-title").html("View Product - " + name + " (" + code + ")");
+                $(".modal-body").html(result);
+                $(".modal").modal("show");
+                
+            }
+        });
+    });
+
+</script>

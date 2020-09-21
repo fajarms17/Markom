@@ -1,0 +1,109 @@
+﻿@model Markom.ViewModel.ProductViewModel
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    .modal-content {
+        max-width: 450px;
+    }
+
+    #code, #created_by, #created_date, #name, #description {
+        display: inline;
+        max-width: 200px;
+    }
+
+    #fitur-add, #fitur-search {
+        padding-bottom: 15px;
+    }
+</style>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        List Product
+    </div>
+    <div class="panel-body">
+        <div style="background-color:#f5f5f0">
+            Home / Master / List Product
+        </div>
+        <div class="col-md-12" id="fitur-add">
+            <input id="btn-create-new" type="button" class="btn btn-primary pull-right" value="Add" />
+        </div>
+        <div id="fitur-search">
+            @Html.EditorFor(model => model.code, new { htmlAttributes = new { @class = "form-control", @placeholder = "Product Code" } })
+            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Product Name" } })
+            @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control", @placeholder = "Description" } })
+            @Html.EditorFor(model => model.created_date, new { htmlAttributes = new { @class = "form-control", @type = "date", @placeholder = "Created Date" } })
+            @Html.EditorFor(model => model.created_by, new { htmlAttributes = new { @class = "form-control", @placeholder = "Created By" } })
+            <input id="btn-search" type="button" class="btn btn-warning pull-right" value="Search" />
+        </div>
+
+        <div id="role-list">Loading...</div>
+    </div>
+
+
+
+
+</div>
+<span class="text-primary" id="notif"></span>
+
+<div class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Modal Tittle</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script type="text/javascript">
+        
+        $(document).ready(function () {
+            GetList();
+        });
+
+        function GetList() {
+            
+
+            $.ajax({
+                url: '@Url.Action("List","Product")',
+                type: 'get',
+                data: { code:  $("#code").val(), name:  $("#name").val(),description: $("#description").val(), createdDate: $("#created_date").val(), createdBy: $("#created_by").val() },
+                success: function (result) {
+                    $("#role-list").html(result);
+                }
+            });
+        }
+
+        $("#btn-create-new").click(function () {
+            $.ajax({
+                url: '@Url.Action("Create", "Product")',
+                type: 'get',
+                success: function (result) {
+                    $(".modal-title").html("Add Product");
+                    $(".modal-body").html(result);
+                    $(".modal").modal("show");
+                }
+            });
+        });
+
+        $("#btn-search").click(function () {
+            GetList();
+        });
+
+
+
+
+    </script>
+
+
+}
+

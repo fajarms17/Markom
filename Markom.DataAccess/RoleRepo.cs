@@ -69,6 +69,7 @@ namespace Markom.DataAccess
             {
                 result.Success = false;
                 result.Message = ex.Message;
+                
             }
             return result;
 

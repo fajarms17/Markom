@@ -55,15 +55,18 @@ namespace MarkomApplication.Controllers
             }
             else
             {
-                ModelState.AddModelError("name", "Code Name already exist");
+                
                 return Json(new
                 {
+
                     success = false,
                     message = "Role Name Sudah Ada",
-                    
+
                 }, JsonRequestBehavior.AllowGet);
 
+
             }
+
 
         }
 
